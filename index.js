@@ -71,6 +71,8 @@ app.post('/add-user',(req,res)=>{
     return res.status(201).json(users);
 });
 
+//add updateuser,deleteuser
+
 
 app.listen(3000,()=>{
     console.log('server is runnig on http://localhost:3000');
