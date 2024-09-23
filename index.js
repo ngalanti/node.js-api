@@ -34,46 +34,93 @@ console.log(getUser(1).name);
 
 
 const express = require('express');
-const app =express();
+const app = express();
+
 app.use(express.json());
 
-const users= [
-{id:1,name:'aviv'},
-{id:2,name:'itay'},
-{id:3,name:'shilo'},
+
+const users = [
+    { id: 1, name: 'aviv' },
+    { id: 2, name: 'itay' },
+    { id: 3, name: 'shilo' },
 ];
 
 
-app.get('/users',(req,res)=>{
-    res.json(users);
+app.get('/users', (req, res) => {
+    res.status(200).json(users);
 });
 
-app.post('/add-user',(req,res)=>{
-   const {name}= req.body;
 
-  
+app.post('/add-user', (req, res) => {
+    const { name } = req.body;
 
-   if(!name){
-    return res.status(400).json({error:'Name is requird'});//cheack if the value return what i wanted
-    }  
-    const userExists = users.find((user)=>user.name.includes(name));
-    if (userExists) {
-        return res.status(400).json({ error: 'User with this name already exists' })
-     };
-  
-
-    const newUser={
-        id:users.length+1,
-        name,
+    
+    if (!name) {
+        return res.status(400).json({ error: 'Name is required' });
     }
+
+    
+    const userExists = users.find(user => user.name === name);
+    if (userExists) {
+        return res.status(400).json({ error: 'User with this name already exists' });
+    }
+
+   
+    const newUser = {
+        id: users.length + 1,
+        name,
+    };
     users.push(newUser);
+
     
     return res.status(201).json(users);
 });
 
-//add updateuser,deleteuser
+
+app.delete('/delete-user', (req, res) => {
+    const { name } = req.body;
+
+    
+    if (!name) {
+        return res.status(400).json({ error: 'Name is required' });
+    }
+
+    
+    const userIndex = users.findIndex(user => user.name === name);
+    if (userIndex === -1) {
+        return res.status(404).json({ error: 'USER NOT FOUND' });
+    }
+
+    
+    users.splice(userIndex, 1);
+
+    
+    return res.status(200).json(users);
+});
 
 
-app.listen(3000,()=>{
-    console.log('server is runnig on http://localhost:3000');
-})
+app.patch('/update-user', (req, res) => {
+    const { name, newName } = req.body;
+
+    
+    if (!name || !newName) {
+        return res.status(400).json({ error: 'Both name and newName are required' });
+    }
+
+    
+    const userIndex = users.findIndex(user => user.name === name);
+    if (userIndex === -1) {
+        return res.status(404).json({ error: 'USER NOT FOUND' });
+    }
+
+    
+    users[userIndex].name = newName;
+
+    
+    return res.status(200).json(users);
+});
+
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
