@@ -99,26 +99,20 @@ app.delete('/delete-user', (req, res) => {
 });
 
 
-app.patch('/update-user', (req, res) => {
-    const { name, newName } = req.body;
+app.patch('/update-user/:id', (req, res) => {
+    const {id} = req.params;
+    const {name} = req.body;
 
-    
-    if (!name || !newName) {
-        return res.status(400).json({ error: 'Both name and newName are required' });
+    const user = users.find((user)=> user.id === +id)
+
+    if(!user){
+        return res.status(404).json({error: 'User not found'});
     }
 
-    
-    const userIndex = users.findIndex(user => user.name === name);
-    if (userIndex === -1) {
-        return res.status(404).json({ error: 'USER NOT FOUND' });
-    }
-
-    
-    users[userIndex].name = newName;
-
-    
-    return res.status(200).json(users);
-});
+    //....
+    user.name = name
+    return res.status(200).json(users)
+})
 
 
 app.listen(3000, () => {
