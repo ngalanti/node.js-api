@@ -1,37 +1,24 @@
+const User = require('../models/user')
+
 const users = [
-    { id: 1, name: 'aviv' },
-    { id: 2, name: 'itay' },
-    { id: 3, name: 'shilo' },
+    { id: 1, name: 'Yarin' },
+    { id: 2, name: 'Dori' },
+    { id: 3, name: 'Shilo' },
 ];
 
 const getUsers = (req, res) => {
     res.json(users);
 }
 
-const addUser = (req, res) => {
-    const { name } = req.body;
-
+const addUser = async(req, res) => {
+    const {name, username } = req.body;
     
-    if (!name) {
-        return res.status(400).json({ error: 'Name is required' });
-    }
+    const user = new User ({name, username});
 
-    
-    const userExists = users.find(user => user.name.includes(name));
-    if (userExists) {
-        return res.status(400).json({ error: 'User with this name already exists' });
-    }
+    await user.save();
 
-   
-    const newUser = {
-        id: users.length + 1,
-        name,
-    };
-    users.push(newUser);
-
-    
-    return res.status(201).json(users);
-}
+    return res.status(201).json({message:'User created'});
+};
 
 const updateUser = ((req, res) => {
     const {id} = req.params;
