@@ -35,7 +35,8 @@ console.log(getUser(1).name);
 
 const express = require('express');
 const userRouter = require('./routes/user')
-const connectDB = require('./lib/connect')
+const connectDB = require('./lib/connect');
+const { hiUser } = require('./controllers/user');
 
 const app = express();
 app.use(express.json());
@@ -45,5 +46,6 @@ console.log(process.env.DB_URL)
 
 app.listen(3000, () => {
     connectDB();
+    hiUser();
     console.log('Server is running on http://localhost:3000');
 });

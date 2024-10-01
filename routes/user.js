@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUsers, addUser, updateUser, deleteUser } = require('../controllers/user');
+const { getUsers, addUser, updateUser, deleteUser, hiUser } = require('../controllers/user');
 
 // GET request to retrieve users
 router.get('/users', getUsers);
@@ -12,5 +12,7 @@ router.delete('/delete-user/:id', deleteUser);
 
 // PATCH request to update a user by ID
 router.patch('/update-user/:id', updateUser);
+
+router.get('/hi-user',hiUser);
 
 module.exports = router;
