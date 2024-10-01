@@ -11,7 +11,7 @@ const http = require('http');
 
  
 const filePath = path.join(__dirname,'hello.txt');//give path of file with specific name (_ x2)
-console.log(filePath);
+console.log(filePath)1;
 
 
 function CreateFile(){
