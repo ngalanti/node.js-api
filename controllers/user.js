@@ -58,14 +58,10 @@ const deleteUser = (req, res) => {
     return res.status(200).json(users);
 };
 
-const hiUser = () => {
-    console.log('hallo');
-} 
 
 module.exports = {
     getUsers,
     addUser,
     updateUser,
     deleteUser,
-    hiUser
 }

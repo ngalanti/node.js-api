@@ -46,6 +46,5 @@ console.log(process.env.DB_URL)
 
 app.listen(3000, () => {
     connectDB();
-    hiUser();
     console.log('Server is running on http://localhost:3000');
 });
