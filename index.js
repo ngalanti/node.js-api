@@ -42,7 +42,7 @@ const app = express();
 app.use(express.json());
 app.use(userRouter);
 
-console.log(process.env.DB_URL)
+console.log(process.env.DATABASE_URL)
 
 app.listen(3000, () => {
     connectDB();
