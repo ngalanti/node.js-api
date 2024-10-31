@@ -32,19 +32,18 @@ console.log(users[0].name);
 console.log(getUser(1).name);
 */
 
-
-const express = require('express');
-const userRouter = require('./routes/user')
-const connectDB = require('./lib/connect');
-const { hiUser } = require('./controllers/user');
+const express = require("express");
+const userRouter = require("./routes/user");
+const connectDB = require("./lib/connect");
+const { hiUser } = require("./controllers/user");
 
 const app = express();
 app.use(express.json());
 app.use(userRouter);
 
-console.log(process.env.DATABASE_URL)
+console.log(process.env.DATABASE_URL);
 
 app.listen(3000, () => {
-    connectDB();
-    console.log('Server is running on http://localhost:3000');
+  connectDB();
+  console.log("Server is running on http://localhost:3000");
 });
