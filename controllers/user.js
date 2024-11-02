@@ -15,7 +15,7 @@ const signUp = async (req, res) => {
     if (usernameExists) {
       return res.status(400).json({ message: "Username allready exist" });
     }
-    const emailExists = await user.findOne({ username });
+    const emailExists = await User.findOne({ username });
     if (emailExists) {
       return res.status(400).json({ message: "mail allready exists" });
     }
@@ -45,7 +45,10 @@ const signUp = async (req, res) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ message: error.errors[0].message });
     }
-    return res.status(500).json({ message: "Internal server error" });
+    
+    return res.status(500).json({ message: "Internal server error" }); // error: error.message
+
+
   }
 };
 
