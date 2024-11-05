@@ -79,7 +79,21 @@ const signIn = async (req, res) => {
   }
 };
 
+
+const signOut = async(req,res)=>{
+  try{
+    res.clearCookie('token');
+    return res.status(200).json({message:'user signed out sucssefuly'});
+  }catch (error){
+    console.log(error);
+    return res.status(500).json({message:'internal server error'});
+  }
+  
+  
+  };
+
 module.exports = {
   signUp,
   signIn,
+  signOut,
 };
