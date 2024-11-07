@@ -36,9 +36,11 @@ const express = require("express");
 const routes = require('./routes');
 const connectDB = require("./lib/connect");
 const { hiUser } = require("./controllers/user");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(routes);
 
 console.log(process.env.DATABASE_URL);

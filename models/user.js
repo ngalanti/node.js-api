@@ -24,13 +24,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    Income: [
+    incomes: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Income",
       },
     ],
-    expense: [
+    expenses: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Expense",
