@@ -9,3 +9,5 @@ router.get('/get-expense/:userId',getExpense);
 router.patch('/update-expense/:userId/:expenseId',updateExpense);
 router.delete('/delete-expense/:userId/:expenseId',deleteExpense);
 module.exports = router;
+
+console.log("ss");
