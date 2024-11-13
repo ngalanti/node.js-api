@@ -2,7 +2,6 @@ const { z } = require("zod");
 const User = require('../models/user');
 const { expenseIdValidation, expenseSchema } = require("../lib/validation/expense");
 const Expense = require('../models/expense');
-const { userIdValidation } = require("../lib/validation/user");
 
 
 const addExpense = async (req, res) => {
