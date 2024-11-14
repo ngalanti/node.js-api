@@ -100,34 +100,37 @@ const signOut = async(req,res)=>{
       const userId = userIdValidation.parse(req.params.userId);  
       const { username, email, password } = updateSchema.parse(req.body);  
   
-      if (username) {
-        const usernameExists = await User.findOne({ username });
-        if (usernameExists) {
-          return res.status(400).json({ message: "Username already exists" });
-        }
+      const existingUser = await User.findById(userId);
+      if (!existingUser) {
+        return res.status(404).json({ message: "User not found" });
       }
   
-      if (email) {
-        const emailExists = await User.findOne({ email });
-        if (emailExists) {
-          return res.status(400).json({ message: "Email already exists" });
-        }
+      const usernameExists = await User.findOne({ username });
+      if (usernameExists) {
+        return res.status(400).json({ message: "Username allready exist" });
       }
+      const emailExists = await User.findOne({ email });
+      if (emailExists) {
+        return res.status(400).json({ message: "mail allready exists" });
+      }
+    
   
       const updateData = {};
       if (username) updateData.username = username;
       if (email) updateData.email = email;
-      if (password) updateData.password = await bcrypt.hash(password, 10);
+  
+      if (password) {
+        const isSamePassword = await bcrypt.compare(password, existingUser.password);
+        if (!isSamePassword) {
+          updateData.password = await bcrypt.hash(password, 10);
+        }
+      }
   
       const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
   
-      if (!updatedUser) {
-        return res.status(404).json({ message: "User not found" });
-      }
-  
       setTokenCookie(res, updatedUser, process.env.JWT_SECRET);
   
-      return res.status(200).json({ message: "User updated successfully"});
+      return res.status(200).json({ message: "User updated successfully" });
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: error.errors[0].message });
@@ -136,6 +139,7 @@ const signOut = async(req,res)=>{
       return res.status(500).json({ message: "Internal server error" });
     }
   };
+  
   
   
   
