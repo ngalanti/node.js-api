@@ -14,7 +14,13 @@ const auth = async (req, res, next) => {
     if (!decoded) {
       throw new Error("Invalid token");
     }
-    const user = await User.findOne({ _id: decoded._id });
+
+    if (decoded.exp<Date.now()/1000){
+      throw new Error('token expired');
+    }
+
+
+    const user = await User.findById(decoded.id);
 
     if (!user) {
       throw new Error("User not found");
@@ -29,3 +35,5 @@ const auth = async (req, res, next) => {
     return res.status(401).json({message:error.message});
   }
 };
+
+module.exports =auth;

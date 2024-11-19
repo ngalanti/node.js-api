@@ -83,6 +83,10 @@ const signIn = async (req, res) => {
 
 const signOut = async(req,res)=>{
   try{
+    if(req.user.id !== req.params.id){
+      return res.status(403).json({message:'forbidden'});
+    }
+    
     res.clearCookie('token');
     return res.status(200).json({message:'user signed out sucssefuly'});
   }catch (error){
@@ -97,6 +101,10 @@ const signOut = async(req,res)=>{
 
   const updateUser = async (req, res) => {
     try {
+      if(req.user.id !== req.params.id){
+        return res.status(403).json({message:'forbidden'});
+      }
+
       const userId = userIdValidation.parse(req.params.userId);  
       const { username, email, password } = updateSchema.parse(req.body);  
   

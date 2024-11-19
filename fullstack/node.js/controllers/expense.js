@@ -6,6 +6,10 @@ const Expense = require('../models/expense');
 
 const addExpense = async (req, res) => {
   try {
+    if(req.user.id !== req.params.id){
+      return res.status(403).json({message:'forbidden'});
+    }
+
     const userId = userIdValidation.parse(req.params.userId);
     const { title, description, amount, tag, currency } = expenseSchema.parse(req.body);
 
@@ -40,6 +44,10 @@ const addExpense = async (req, res) => {
 
 const getExpense = async (req, res) => {
   try {
+    if(req.user.id !== req.params.id){
+      return res.status(403).json({message:'forbidden'});
+    }
+
     const userId = userIdValidation.parse(req.params.userId);
 
     const userExists = await User.findById(userId);
@@ -60,6 +68,10 @@ const getExpense = async (req, res) => {
 
 const updateExpense = async (req, res) => {
   try {
+    if(req.user.id !== req.params.id){
+      return res.status(403).json({message:'forbidden'});
+    }
+
     const userId = userIdValidation.parse(req.params.userId);
     const expenseId = expenseIdValidation.parse(req.params.expenseId);
     const { title, description, amount, tag, currency } = expenseSchema.parse(req.body);
@@ -99,6 +111,10 @@ const updateExpense = async (req, res) => {
 
 const deleteExpense = async (req, res) => {
   try {
+    if(req.user.id !== req.params.id){
+      return res.status(403).json({message:'forbidden'});
+    }
+    
     const userId = userIdValidation.parse(req.params.userId);
     const expenseId = expenseIdValidation.parse(req.params.expenseId);
 
