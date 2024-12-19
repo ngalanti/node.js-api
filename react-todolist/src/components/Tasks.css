@@ -1,0 +1,133 @@
+body {
+    background-color: #fff7e6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .app {
+    background: linear-gradient(135deg, #ffffff, #ffe6cf);
+    padding: 20px;  
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    height:60%;
+    
+  }
+  h1{
+    margin: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+  }
+  
+  .input-container{
+    display: flex;
+    gap: 12px;
+  }
+  input{
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #dfe4ea;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  input:focus{
+    outline: none;
+    border-color: #ff9f43;
+    box-shadow: 0 0 5px rgba(255, 159, 67, 0.5);
+  }
+  button{
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff9f43;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover{
+    background-color: #e68a3d;
+  }
+  .todo-list{
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    overflow: auto;
+    height: 70%;
+  }
+  
+  li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition:all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  li:hover{
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+  }
+  li.completed span{
+    text-decoration: line-through;
+    color: #808080;
+  }
+  li span{
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+
+    display: inline-block;
+    max-width: 150px;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  li button{
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover{
+    background-color: #e64a4a;
+  }
+  .icons-wrapper{
+    display: flex;
+    gap: 12px;
+  }
+  .icons-wrapper .trash, .edit{
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+  }
+  .icons-wrapper .check{
+    width: 21px;
+    height: 21px;
+  }
+  .icons-wrapper .trash:hover{
+    color: red;
+  }
+  .icons-wrapper .check:hover{
+    color: green;
+  }
+  .icons-wrapper .pencil:hover{
+    color: blue;
+  }
+  
