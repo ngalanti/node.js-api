@@ -1,0 +1,26 @@
+:root{
+    --primary-color:#0d1e4c;
+    --secondary-color:#c48cb3;
+    --accent-color:#e5c9d7;
+    --light-blue:#83a6ce;
+    --dark-blue:#26415e;
+    --deep-blue:#0b1b32;
+}
+
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+body{
+    font-family: "Anek Latin", sans-serif;
+
+}
