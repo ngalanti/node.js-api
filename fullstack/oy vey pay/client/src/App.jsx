@@ -7,19 +7,16 @@ import {Dashboard} from './components/Dashboard'
 import { Navbar } from './components/Navbar'
 import { useEffect } from 'react'
 import { me } from './api/auth'
-
+import {useAuth} from './components/AuthProvider'
 function App() {
-  const isLogedIn=true;
-
-
-useEffect (()=>{
-  me().then((data)=>console.log(data));
-},[]);
-
-
+const {isLoggedIn,user,isPendig} = useAuth();
+if(isPendig){
+  return <div>Loading...</div>
+}
+console.log(user);
   return (
     <>
-    {isLogedIn ? <Navbar/> : null}
+    {isLoggedIn? <Navbar/> : null}
     <Routes>
     <Route path='/' element ={<Dashboard/>}/>
     <Route path='/auth' element ={<AuthForm/>}/>

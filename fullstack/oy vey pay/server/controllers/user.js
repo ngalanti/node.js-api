@@ -103,7 +103,7 @@ try {
     fullName,
     username,
     id:_id,
-    exp,
+    tokenExpired: exp,
   };
   return res.status(200).json(user);
 

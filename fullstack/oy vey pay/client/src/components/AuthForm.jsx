@@ -37,12 +37,12 @@ export const AuthForm = () => {
        
         const data = await signIn(payload);
         toast.success(data.message); 
-        navigate('/');
+        window.location.href = '/';
         return;
       }
       const data = await signUp(payload);
       toast.success(data.message); 
-      navigate('/');
+      window.location.href = '/';
     } catch (error) {
       toast.error(error.message);
     } finally{

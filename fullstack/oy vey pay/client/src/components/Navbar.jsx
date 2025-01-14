@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import "./Navbar.css";
 import { logOut } from "../api/auth";
 
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
