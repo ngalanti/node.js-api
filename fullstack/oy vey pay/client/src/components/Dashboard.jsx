@@ -6,6 +6,7 @@ export const Dashboard = () => {
   const { user } = useAuth();
 
   return (
+    
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Welcome {user?.fullName}</h1>
