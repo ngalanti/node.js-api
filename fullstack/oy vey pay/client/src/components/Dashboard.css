@@ -1,0 +1,69 @@
+.dashboard {
+    padding: 16px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  .dashboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 60px;
+  }
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: underline;
+  }
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card {
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  .card h2 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .card.income {
+    background-color: #e0f7e9;
+    color: #2e7d32;
+  }
+  .card.expenses {
+    background-color: #ffe0e0;
+    color: #d32f2f;
+  }
+  .card.balance {
+    background-color: #e0f7fa;
+    color: #00796b;
+  }
+
+@media (min-width: 768px) {
+    .summary {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .card {
+        flex:1;
+        min-width: 30%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .dashboard-header {
+        font-size: 2rem;
+    }
+    .card h2 {
+        font-size: 2rem;
+    }
+  }
