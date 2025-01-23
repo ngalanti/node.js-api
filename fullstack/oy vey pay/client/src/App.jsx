@@ -1,13 +1,13 @@
 
-import './App.css'
-import { AuthForm } from './components/AuthForm'
+import { AuthForm,Dashboard,Navbar,useAuth,Expenses } from './components'
 import { ToastContainer} from 'react-toastify'
 import { Route,Routes } from 'react-router'
-import {Dashboard} from './components/Dashboard'
-import { Navbar } from './components/Navbar'
-import { useEffect } from 'react'
-import { me } from './api/auth'
-import {useAuth} from './components/AuthProvider'
+
+
+
+
+
+
 function App() {
 const {isLoggedIn,user,isPendig} = useAuth();
 if(isPendig){
@@ -19,6 +19,7 @@ console.log(user);
     {isLoggedIn? <Navbar/> : null}
     <Routes>
     <Route path='/' element ={<Dashboard/>}/>
+    <Route path='/expenses' element ={<Expenses/>}/>
     <Route path='/auth' element ={<AuthForm/>}/>
     </Routes>
     <ToastContainer position='top-right' theme='colored'autoClose={5000}/>

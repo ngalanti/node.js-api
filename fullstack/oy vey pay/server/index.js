@@ -30,6 +30,7 @@ readFile();
 const {users,getUser} = require('./users');
 console.log(users[0].name);
 console.log(getUser(1).name);
+
 */
 
 const express = require("express");
