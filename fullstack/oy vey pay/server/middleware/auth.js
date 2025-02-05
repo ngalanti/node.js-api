@@ -19,7 +19,6 @@ const auth = async (req, res, next) => {
       throw new Error('token expired');
     }
 
-
     const user = await User.findById(decoded.id);
 
     if (!user) {

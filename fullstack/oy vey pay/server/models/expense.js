@@ -36,6 +36,11 @@ const expenseSchema = new mongoose.Schema(
       default: "ILS",
       enum: ["ILS", "USD", "EUR"],
     },
+    //exchange rate to ILS
+    exchangeAmount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

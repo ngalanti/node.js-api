@@ -26,6 +26,8 @@ const isTokenExpired = (decodedToken) => {
 const checkAuth = async () => {
     try {
         const data = await me()
+        
+
         if(isTokenExpired(data) || !data){
             throw new Error('token expired')
         }
@@ -44,7 +46,7 @@ useEffect(() => {
 },[]);
 return (
     <AuthContext.Provider value={{user,isPending,isLoggedIn}}>
-        {children}
+        {children}  
     </AuthContext.Provider>
 )
 };

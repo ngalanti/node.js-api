@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../components/AuthProvider";
 import "./Dashboard.css";
+import { getTotalExpenses } from "../api/expense";
 
 export const Dashboard = () => {
   const { user } = useAuth();
+  const [totalExpense, setTotalExpense] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalExpenses = async () => {
+      try {        
+        const data = await getTotalExpenses(user.id);
+        setTotalExpense(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    fetchTotalExpenses();
+  }, []);
 
   return (
-    
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Welcome {user?.fullName}</h1>
@@ -20,7 +33,7 @@ export const Dashboard = () => {
 
         <div className="card expenses">
           <h2>Total Expenses</h2>
-          <p>$500</p>
+          <p>{totalExpense}</p>
         </div>
 
         <div className="card balance">

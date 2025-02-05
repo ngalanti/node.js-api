@@ -3,14 +3,13 @@ import { Link, NavLink } from "react-router";
 import "./Navbar.css";
 import { logOut } from "../api/auth";
 
-
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
-        Logo
+        <img src="/images/logo,webp" alt="logo" width={30} height={50} />
       </Link>
 
       <div className={`navbar-links ${isOpen ? "open" : ""}`}>
